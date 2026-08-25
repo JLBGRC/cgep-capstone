@@ -1,0 +1,10 @@
+compact: true
+framework:
+  - terraform
+directory: terraform
+soft-fail-on:
+  - LOW
+  - MEDIUM
+skip-check:
+  - CKV_AWS_144
+  - CKV_AWS_115
