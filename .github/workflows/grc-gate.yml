@@ -89,7 +89,8 @@ jobs:
           directory: terraform
           framework: terraform
           config_file: .checkov.yaml
-          soft_fail_on: LOW,MEDIUM
+          soft_fail: true
+          hard_fail_on: HIGH,CRITICAL
           quiet: true
           output_format: cli,json
           output_file_path: console,checkov-results.json
