@@ -1,0 +1,14 @@
+{
+  "source": "aws.kms",
+  "detail-type": "AWS API Call via CloudTrail",
+  "detail": {
+    "eventName": "DisableKey",
+    "eventSource": "kms.amazonaws.com",
+    "resources": [
+      {
+        "ARN": "arn:aws:kms:us-east-1:111122223333:key/someone-else",
+        "type": "AWS::KMS::Key"
+      }
+    ]
+  }
+}

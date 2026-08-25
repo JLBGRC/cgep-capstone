@@ -46,3 +46,13 @@ output "grc_gate_role_arn" {
   value       = aws_iam_role.grc_gate.arn
   description = "GitHub Actions OIDC role. Set repo var AWS_ROLE_ARN to this value."
 }
+
+output "security_alerts_topic_arn" {
+  value       = aws_sns_topic.security_alerts.arn
+  description = "Subscribe acme-health-security-ops here. No email endpoints in git."
+}
+
+output "detection_dlq_url" {
+  value       = aws_sqs_queue.detection_dlq.id
+  description = "Failed EventBridge deliveries after two retries."
+}
