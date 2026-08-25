@@ -26,11 +26,11 @@ Repo vars for the gate: `AWS_ROLE_ARN` (`cgep-capstone-gate`), `EVIDENCE_VAULT` 
 ## Layout
 
 ```
-terraform/     # starter + HIPAA overrides (main.tf, baseline.tf)
-- monitoring.tf
+terraform/     # starter + HIPAA overrides (main.tf, baseline.tf, monitoring.tf)
 policies/      # eight HIPAA Rego packages + tests
+detections/    # EventBridge fixture tests for KMS key lifecycle
 .github/workflows/grc-gate.yml
-oscal/         # catalog, profile, component, detections
+oscal/         # catalog, profile, component
 scripts/       # policy-gate.sh, verify-evidence.sh
 WRITEUP.md
 ```

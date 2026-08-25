@@ -53,12 +53,12 @@ EventBridge/SNS also serves 164.312(b) / 164.308(a)(1) beyond GAP-08
 
 GAP-03 had a similar CI-only miss: on a create-plan with empty state, `planned_values` for the bucket policy JSON is unknown. The policy now also reads `data.aws_iam_policy_document.uploads` in `configuration` for `aws:SecureTransport`.
 
-## Honest skips (My justifications for some design choices)
+## My Justifications (for some design choices)
 
 - **Reserved Lambda concurrency.** This account’s unreserved concurrent-execution floor is 10, so any reservation fails `PutFunctionConcurrency`. DLQ + X-Ray still implement GAP-06.
 - **WAFv2 association on HTTP APIs.** `AssociateWebACL` does not accept API Gateway HTTP API stage ARNs (REST stages and ALBs only). `aws_wafv2_web_acl.intake` still exists. GAP-08 is enforced with access logs and throttle. Converting the starter to REST would rewrite the workload.
-- **GuardDuty / Macie / Security Hub. Skipped for cost. Detective coverage is CloudTrail plus an EventBridge rule** `aws_cloudwatch_event_rule.kms_key_lifecycle`**) that fires on** `DisableKey` **/** `ScheduleKeyDeletion` **for our data and vault CMKs, publishes to SNS topic** `acme-health-intake-security-alerts-e6bb03bb` **(subscribe** `acme-health-security-ops`**; no emails in git), retries twice, then DLQ. Fixture tests:** `python3 -m unittest discover -s detections -v`**.**
-- **Checkov. CI fails closed on HIGH/CRITICAL. Skips:** `CKV_AWS_115` **(reserved concurrency floor),** `CKV_AWS_144` **(CRR cost),** `CKV2_AWS_56` **(OIDC role needs IAM to apply),** `CKV_AWS_356` **/** `109` **/** `111` **(KMS key policies must use** `Resource = "*"`**).**
+- **GuardDuty / Macie / Security Hub.** Skipped for cost. Detective coverage is CloudTrail plus an EventBridge rule `aws_cloudwatch_event_rule.kms_key_lifecycle`) that fires on DisableKey / ScheduleKeyDeletion for our data and vault CMKs, publishes to SNS topic acme-health-intake-security-alerts-e6bb03bb (subscribe acme-health-security-ops; no emails in git), retries twice, then DLQ. Fixture tests: `python3 -m unittest discover -s detections -v`.
+- **Checkov.** CI fails closed on HIGH/CRITICAL. Skips: CKV_AWS_115 (reserved concurrency floor), CKV_AWS_144 (CRR cost), CKV2_AWS_56 (OIDC role needs IAM to apply), CKV_AWS_356 / 109 / 111 (KMS key policies must use Resource = "*").
 
 
 
