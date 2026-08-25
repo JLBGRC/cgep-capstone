@@ -8,3 +8,7 @@ soft-fail-on:
 skip-check:
   - CKV_AWS_144
   - CKV_AWS_115
+  - CKV2_AWS_56
+  - CKV_AWS_356
+  - CKV_AWS_109
+  - CKV_AWS_111

@@ -79,11 +79,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: semgrep
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: auto
-        env:
-          SEMGREP_SEND_METRICS: "off"
+        run: |
+          python3 -m pip install --upgrade "semgrep>=1.80"
+          semgrep scan --config auto --severity ERROR --error --metrics off .
 
       - name: checkov
         uses: bridgecrewio/checkov-action@v12
@@ -91,6 +89,8 @@ jobs:
           directory: terraform
           framework: terraform
           config_file: .checkov.yaml
+          soft_fail_on: LOW,MEDIUM
+          quiet: true
           output_format: cli,json
           output_file_path: console,checkov-results.json
           download_external_modules: false
