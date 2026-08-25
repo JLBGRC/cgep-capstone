@@ -1,0 +1,14 @@
+{
+  "source": "aws.kms",
+  "detail-type": "AWS API Call via CloudTrail",
+  "detail": {
+    "eventName": "ScheduleKeyDeletion",
+    "eventSource": "kms.amazonaws.com",
+    "resources": [
+      {
+        "ARN": "arn:aws:kms:us-east-1:455697799770:key/vault-cmk-id",
+        "type": "AWS::KMS::Key"
+      }
+    ]
+  }
+}

@@ -5,13 +5,14 @@ variable "aws_region" {
 }
 
 variable "github_org" {
-  type    = string
-  default = "JLBGRC"
+  type        = string
+  description = "GitHub organization or account that owns the capstone repository."
+  default     = "JLBGRC"
 }
-
 variable "github_repo" {
-  type    = string
-  default = "cgep-capstone"
+  type        = string
+  description = "GitHub repository authorized to assume the CI OIDC role."
+  default     = "cgep-capstone"
 }
 
 variable "github_owner_id" {

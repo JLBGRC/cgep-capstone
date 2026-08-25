@@ -1,6 +1,5 @@
 # Terraform
 .terraform/
-.terraform.lock.hcl
 *.tfstate
 *.tfstate.*
 *.tfvars
@@ -8,6 +7,9 @@
 tfplan
 *.tfplan
 crash.log
+terraform/plan.json
+__pycache__/
+*.pyc
 
 # Lambda build
 terraform/lambda/handler.zip
