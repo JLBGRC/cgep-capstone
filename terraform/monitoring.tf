@@ -9,7 +9,7 @@ resource "aws_sns_topic" "security_alerts" {
 
   tags = {
     AlertOwner = "acme-health-security-ops"
-    Control    = "164.312(b)"
+    Control    = "HIPAA-164-312-b"
   }
 }
 
