@@ -39,6 +39,6 @@ policy_actions(policy) := actions if {
 as_array(x) := x if is_array(x)
 as_array(x) := [x] if is_string(x)
 
-is_store_wildcard(action) if action == "dynamo:*"
+is_store_wildcard(action) if action == "dynamodb:*"
 is_store_wildcard(action) if action == "s3:*"
 is_store_wildcard(action) if action == "*"
