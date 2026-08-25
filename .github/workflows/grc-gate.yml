@@ -49,7 +49,7 @@ jobs:
         run: |
           terraform init -input=false
           terraform validate
-          terraform plan -out=tfplan -no-color | tee plan.txt
+          terraform plan -out=tfplan -no-color > plan.txt
           terraform show -json tfplan > plan.json
 
       - name: Conftest policy gate
