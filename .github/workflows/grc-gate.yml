@@ -81,7 +81,7 @@ jobs:
       - name: semgrep
         run: |
           python3 -m pip install --upgrade "semgrep>=1.80"
-          semgrep scan --config auto --severity ERROR --error --metrics off .
+          semgrep scan --config auto --severity ERROR --error .
 
       - name: checkov
         uses: bridgecrewio/checkov-action@v12
