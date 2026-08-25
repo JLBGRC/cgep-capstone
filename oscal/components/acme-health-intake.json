@@ -100,14 +100,16 @@
               {
                 "uuid": "5dac806d-6cd7-468c-a7d1-9d493c1654fd",
                 "control-id": "164.312.b",
-                "description": "HTTP API access logs and stage throttle. Regional WAFv2 Web ACL is provisioned; AssociateWebACL does not support HTTP API stages. CloudTrail is multi-region with log-file validation.",
+                "description": "HTTP API access logs and stage throttle. Regional WAFv2 Web ACL is provisioned; AssociateWebACL does not support HTTP API stages. CloudTrail is multi-region with log-file validation. EventBridge alerts on DisableKey/ScheduleKeyDeletion for the data and vault CMKs and publishes to SNS.",
                 "props": [
                   { "name": "implementation-status", "value": "implemented" },
                   { "name": "hipaa-citation", "value": "164.312(b)" },
                   { "name": "hitrust", "value": "06.d" },
                   { "name": "terraform-resource", "value": "aws_apigatewayv2_stage.default" },
                   { "name": "terraform-resource", "value": "aws_wafv2_web_acl.intake" },
-                  { "name": "terraform-resource", "value": "aws_cloudtrail.mgmt" }
+                  { "name": "terraform-resource", "value": "aws_cloudtrail.mgmt" },
+                  { "name": "terraform-resource", "value": "aws_cloudwatch_event_rule.kms_key_lifecycle" },
+                  { "name": "terraform-resource", "value": "aws_sns_topic.security_alerts" }
                 ]
               },
               {
