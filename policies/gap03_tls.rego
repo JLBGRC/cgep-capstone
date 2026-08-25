@@ -30,3 +30,14 @@ uploads_denies_insecure if {
 	contains(r.values.policy, "aws:SecureTransport")
 	contains(r.values.policy, "false")
 }
+
+uploads_denies_insecure if {
+	some r in input.configuration.root_module.resources
+	r.type == "aws_iam_policy_document"
+	r.name == "uploads"
+	some stmt in r.expressions.statement
+	some cond in stmt.condition
+	cond.variable.constant_value == "aws:SecureTransport"
+	some v in cond.values.constant_value
+	v == "false"
+}
